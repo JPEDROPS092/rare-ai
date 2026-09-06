@@ -1,0 +1,151 @@
+{
+  "repo_id": "SageBio/mva-hackathon-2026-data",
+  "generated_at": "2026-09-06T02:55:07.335851+00:00",
+  "file_count": 13,
+  "total_size_bytes": 84985955967,
+  "files": [
+    {
+      "filename": ".gitattributes",
+      "size_bytes": 2575,
+      "size_human": "2.5 KB",
+      "blob_id": "cef299307bcf732e7168ee848763bf3783ef34da",
+      "lfs": false,
+      "type": "Git meta",
+      "purpose": "Repository metadata",
+      "track1": "-",
+      "track2": "-"
+    },
+    {
+      "filename": "Challenge_Clinical_Phenotype_1.docx",
+      "size_bytes": 16865,
+      "size_human": "16.5 KB",
+      "blob_id": "e585da0c0e36b50037fb6473e05fbb377eef861e",
+      "lfs": false,
+      "type": "DOCX",
+      "purpose": "Clinical phenotype description (HPO encoding source)",
+      "track1": "YES",
+      "track2": "YES"
+    },
+    {
+      "filename": "README.md",
+      "size_bytes": 5076,
+      "size_human": "5.0 KB",
+      "blob_id": "faea0dd83e6a459c1a1585ec6ec4a5d4b9b2c596",
+      "lfs": false,
+      "type": "Markdown",
+      "purpose": "Dataset documentation and download instructions",
+      "track1": "ref",
+      "track2": "ref"
+    },
+    {
+      "filename": "WGS_EX2312012_HGWCNDSX7.vcf.gz",
+      "size_bytes": 315153971,
+      "size_human": "300.6 MB",
+      "blob_id": "26e527c35bba88ed976882d176170f48c362b5de",
+      "lfs": true,
+      "type": "VCF (bgzip)",
+      "purpose": "Whole-genome variant calls (SNV/indel) for proband",
+      "track1": "YES",
+      "track2": "YES"
+    },
+    {
+      "filename": "WGS_EX2312012_HGWCNDSX7.vcf.gz.tbi",
+      "size_bytes": 2343376,
+      "size_human": "2.2 MB",
+      "blob_id": "1ec49f5764a300734dd37d23cca889c7976ba12e",
+      "lfs": true,
+      "type": "Tabix/csi index",
+      "purpose": "Random-access index for the VCF",
+      "track1": "YES",
+      "track2": "YES"
+    },
+    {
+      "filename": "WGS_EX2312012_HGWCNDSX7_S16_L001_R1_001.fastq.gz",
+      "size_bytes": 10467073561,
+      "size_human": "9.7 GB",
+      "blob_id": "95cebe2fd6f51109e250c16c2856e35f91647b07",
+      "lfs": true,
+      "type": "FASTQ (gz)",
+      "purpose": "Raw WGS reads (paired-end lanes); only needed for re-calling",
+      "track1": "optional",
+      "track2": "optional"
+    },
+    {
+      "filename": "WGS_EX2312012_HGWCNDSX7_S16_L001_R2_001.fastq.gz",
+      "size_bytes": 11035873766,
+      "size_human": "10.3 GB",
+      "blob_id": "903794ea38c51e0788697c6560c2caa551307432",
+      "lfs": true,
+      "type": "FASTQ (gz)",
+      "purpose": "Raw WGS reads (paired-end lanes); only needed for re-calling",
+      "track1": "optional",
+      "track2": "optional"
+    },
+    {
+      "filename": "WGS_EX2312012_HGWCNDSX7_S16_L002_R1_001.fastq.gz",
+      "size_bytes": 10375801767,
+      "size_human": "9.7 GB",
+      "blob_id": "2abcb0427b5593456c0c0978b534404c3327d9d0",
+      "lfs": true,
+      "type": "FASTQ (gz)",
+      "purpose": "Raw WGS reads (paired-end lanes); only needed for re-calling",
+      "track1": "optional",
+      "track2": "optional"
+    },
+    {
+      "filename": "WGS_EX2312012_HGWCNDSX7_S16_L002_R2_001.fastq.gz",
+      "size_bytes": 10911120034,
+      "size_human": "10.2 GB",
+      "blob_id": "3f4c6ca3ebbc9f4029db1eb0009e9e19c355875f",
+      "lfs": true,
+      "type": "FASTQ (gz)",
+      "purpose": "Raw WGS reads (paired-end lanes); only needed for re-calling",
+      "track1": "optional",
+      "track2": "optional"
+    },
+    {
+      "filename": "WGS_EX2312012_HGWCNDSX7_S16_L003_R1_001.fastq.gz",
+      "size_bytes": 10195738985,
+      "size_human": "9.5 GB",
+      "blob_id": "b502be857bb0bb5f1a7a0c80b0925935c57fc59b",
+      "lfs": true,
+      "type": "FASTQ (gz)",
+      "purpose": "Raw WGS reads (paired-end lanes); only needed for re-calling",
+      "track1": "optional",
+      "track2": "optional"
+    },
+    {
+      "filename": "WGS_EX2312012_HGWCNDSX7_S16_L003_R2_001.fastq.gz",
+      "size_bytes": 10621354344,
+      "size_human": "9.9 GB",
+      "blob_id": "072f6e9a36cdbfbf168f3fa979e95153e953297f",
+      "lfs": true,
+      "type": "FASTQ (gz)",
+      "purpose": "Raw WGS reads (paired-end lanes); only needed for re-calling",
+      "track1": "optional",
+      "track2": "optional"
+    },
+    {
+      "filename": "WGS_EX2312012_HGWCNDSX7_S16_L004_R1_001.fastq.gz",
+      "size_bytes": 10306364082,
+      "size_human": "9.6 GB",
+      "blob_id": "251507505d0811f2b7dca4d3693ab405e3a0e773",
+      "lfs": true,
+      "type": "FASTQ (gz)",
+      "purpose": "Raw WGS reads (paired-end lanes); only needed for re-calling",
+      "track1": "optional",
+      "track2": "optional"
+    },
+    {
+      "filename": "WGS_EX2312012_HGWCNDSX7_S16_L004_R2_001.fastq.gz",
+      "size_bytes": 10755107565,
+      "size_human": "10.0 GB",
+      "blob_id": "da2836da2f495943aa960b39d9f214993c9350c9",
+      "lfs": true,
+      "type": "FASTQ (gz)",
+      "purpose": "Raw WGS reads (paired-end lanes); only needed for re-calling",
+      "track1": "optional",
+      "track2": "optional"
+    }
+  ]
+}

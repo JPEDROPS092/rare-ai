@@ -1,0 +1,51 @@
+# Annotation pipeline configuration.
+
+vep:
+  enabled: true
+  url: https://rest.ensembl.org/vep/homo_sapiens/region
+  batch_size: 200          # Ensembl REST accepts up to 200 identifiers per POST
+  max_variants: null       # safety cap for cost control (null = no cap)
+  requests_per_second: 2
+  timeout_s: 60
+  retries: 3
+  cache_file: data/annotations/rest_cache/vep_cache.jsonl
+
+gnomad_api:
+  # Optional per-variant frequency backfill via the gnomAD browser API.
+  # Disabled by default: Ensembl VEP colocated frequencies are the primary source.
+  enabled: false
+  url: https://gnomad.broadinstitute.org/api
+  cache_file: data/annotations/rest_cache/gnomad_cache.jsonl
+
+clinvar:
+  # Categories counted as clinical evidence (raw CLNSIG strings also stored).
+  pathogenic_terms: ["pathogenic", "pathogenic/likely_pathogenic"]
+  likely_pathogenic_terms: ["likely_pathogenic"]
+  vus_terms: ["uncertain_significance"]
+  benign_terms: ["benign", "likely_benign"]
+
+consequence_severity:
+  # High-severity (predicted LoF / canonical splice)
+  transcript_ablation: 1.0
+  splice_acceptor_variant: 1.0
+  splice_donor_variant: 1.0
+  stop_gained: 1.0
+  frameshift_variant: 1.0
+  stop_lost: 0.9
+  start_lost: 0.9
+  # Moderate
+  inframe_insertion: 0.5
+  inframe_deletion: 0.5
+  missense_variant: 0.5
+  protein_altering_variant: 0.5
+  splice_region_variant: 0.4
+  splice_polypyrimidine_tract_variant: 0.2
+  coding_sequence_variant: 0.3
+  # Low
+  synonymous_variant: 0.05
+  stop_retained_variant: 0.05
+  incomplete_terminal_codon_variant: 0.1
+  # Non-coding default applied when term is absent from this map
+  default: 0.1
+
+splice_window_bp: 2   # +/- bp around exons considered splice-relevant

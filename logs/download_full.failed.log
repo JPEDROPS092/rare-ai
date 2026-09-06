@@ -1,0 +1,123 @@
+2026-09-05 23:03:03 | INFO    | rareai.data.download | Already present: /run/media/pedro/a8e125ae-715d-4167-a91c-0241703dacd7/home/pedromate/rareai-data/raw/WGS_EX2312012_HGWCNDSX7.vcf.gz
+2026-09-05 23:03:03 | INFO    | rareai.data.download | Already present: /run/media/pedro/a8e125ae-715d-4167-a91c-0241703dacd7/home/pedromate/rareai-data/raw/WGS_EX2312012_HGWCNDSX7.vcf.gz.tbi
+2026-09-05 23:03:03 | INFO    | rareai.data.download | Already present: /run/media/pedro/a8e125ae-715d-4167-a91c-0241703dacd7/home/pedromate/rareai-data/raw/Challenge_Clinical_Phenotype_1.docx
+2026-09-05 23:03:03 | INFO    | rareai.data.download | Already present: /run/media/pedro/a8e125ae-715d-4167-a91c-0241703dacd7/home/pedromate/rareai-data/raw/README.md
+2026-09-05 23:03:03 | INFO    | rareai.data.download | FASTQ files to download: 8 (~84.7 GB)
+2026-09-05 23:03:03 | INFO    | rareai.data.download | Downloading WGS_EX2312012_HGWCNDSX7_S16_L001_R1_001.fastq.gz ...
+╭───────────────────── Traceback (most recent call last) ──────────────────────╮
+│ /home/pedro/Projetos/rare-ai/rareai/cli.py:67 in download                    │
+│                                                                              │
+│    64 │   if file:                                                           │
+│    65 │   │   path = download_file(file)                                     │
+│    66 │   else:                                                              │
+│ ❱  67 │   │   paths = download_track(track, include_fastq=include_fastq or   │
+│       full)                                                                  │
+│    68 │   │   path = paths[-1]                                               │
+│    69 │   │   if full:                                                       │
+│    70 │   │   │   fastq_paths = download_fastqs()                            │
+│                                                                              │
+│ /home/pedro/Projetos/rare-ai/rareai/data/download.py:62 in download_track    │
+│                                                                              │
+│    59 │   │   downloaded.append(download_file(filename))                     │
+│    60 │                                                                      │
+│    61 │   if include_fastq:                                                  │
+│ ❱  62 │   │   downloaded.extend(download_fastqs())                           │
+│    63 │                                                                      │
+│    64 │   _write_manifest(downloaded)                                        │
+│    65 │   return downloaded                                                  │
+│                                                                              │
+│ /home/pedro/Projetos/rare-ai/rareai/data/download.py:96 in download_fastqs   │
+│                                                                              │
+│    93 │   │   │   logger.info("Already present: %s", expected)               │
+│    94 │   │   │   paths.append(expected)                                     │
+│    95 │   │   │   continue                                                   │
+│ ❱  96 │   │   paths.append(download_file(filename))                          │
+│    97 │   _write_manifest(paths)                                             │
+│    98 │   return paths                                                       │
+│    99                                                                        │
+│                                                                              │
+│ /home/pedro/Projetos/rare-ai/rareai/data/download.py:34 in download_file     │
+│                                                                              │
+│    31 │   │   raise RuntimeError("HF_TOKEN is not set. Configure .env (see   │
+│       .env.example).")                                                       │
+│    32 │   logger.info("Downloading %s ...", filename)                        │
+│    33 │   path = Path(                                                       │
+│ ❱  34 │   │   hf_hub_download(                                               │
+│    35 │   │   │   repo_id=cfg.repo_id,                                       │
+│    36 │   │   │   filename=filename,                                         │
+│    37 │   │   │   repo_type="dataset",                                       │
+│                                                                              │
+│ /home/pedro/Projetos/rare-ai/.venv/lib/python3.12/site-packages/huggingface_ │
+│ hub/utils/_validators.py:88 in _inner_fn                                     │
+│                                                                              │
+│    85 │   │                                                                  │
+│    86 │   │   kwargs =                                                       │
+│       smoothly_deprecate_legacy_arguments(fn_name=fn.__name__,               │
+│       kwargs=kwargs)                                                         │
+│    87 │   │                                                                  │
+│ ❱  88 │   │   return fn(*args, **kwargs)                                     │
+│    89 │                                                                      │
+│    90 │   return _inner_fn  # type: ignore                                   │
+│    91                                                                        │
+│                                                                              │
+│ /home/pedro/Projetos/rare-ai/.venv/lib/python3.12/site-packages/huggingface_ │
+│ hub/file_download.py:1007 in hf_hub_download                                 │
+│                                                                              │
+│   1004 │   )                                                                 │
+│   1005 │                                                                     │
+│   1006 │   if local_dir is not None:                                         │
+│ ❱ 1007 │   │   return _hf_hub_download_to_local_dir(                         │
+│   1008 │   │   │   # Destination                                             │
+│   1009 │   │   │   local_dir=local_dir,                                      │
+│   1010 │   │   │   # File info                                               │
+│                                                                              │
+│ /home/pedro/Projetos/rare-ai/.venv/lib/python3.12/site-packages/huggingface_ │
+│ hub/file_download.py:1466 in _hf_hub_download_to_local_dir                   │
+│                                                                              │
+│   1463 │   # Otherwise, let's download the file!                             │
+│   1464 │   with WeakFileLock(paths.lock_path):                               │
+│   1465 │   │   paths.file_path.unlink(missing_ok=True)  # delete outdated    │
+│        file first                                                            │
+│ ❱ 1466 │   │   _download_to_tmp_and_move(                                    │
+│   1467 │   │   │   incomplete_path=paths.incomplete_path(etag),              │
+│   1468 │   │   │   destination_path=paths.file_path,                         │
+│   1469 │   │   │   url_to_download=url_to_download,                          │
+│                                                                              │
+│ /home/pedro/Projetos/rare-ai/.venv/lib/python3.12/site-packages/huggingface_ │
+│ hub/file_download.py:1976 in _download_to_tmp_and_move                       │
+│                                                                              │
+│   1973 │   │   │                                                             │
+│   1974 │   │   │   if xet_file_data is not None and is_xet_available():      │
+│   1975 │   │   │   │   logger.debug("Xet Storage is enabled for this repo.   │
+│        Downloading file from Xet Storage..")                                 │
+│ ❱ 1976 │   │   │   │   xet_get(                                              │
+│   1977 │   │   │   │   │   incomplete_path=tmp_path,                         │
+│   1978 │   │   │   │   │   xet_file_data=xet_file_data,                      │
+│   1979 │   │   │   │   │   headers=headers,                                  │
+│                                                                              │
+│ /home/pedro/Projetos/rare-ai/.venv/lib/python3.12/site-packages/huggingface_ │
+│ hub/file_download.py:571 in xet_get                                          │
+│                                                                              │
+│    568 │   │   external_reconstruction_bar=_tqdm_bar,                        │
+│    569 │   ) as progress:                                                    │
+│    570 │   │   try:                                                          │
+│ ❱  571 │   │   │   with session.new_file_download_group(                     │
+│    572 │   │   │   │   endpoint=connection_info.endpoint,                    │
+│    573 │   │   │   │   token=connection_info.access_token,                   │
+│    574 │   │   │   │                                                         │
+│        token_expiry_unix_secs=connection_info.expiration_unix_epoch,         │
+╰──────────────────────────────────────────────────────────────────────────────╯
+RuntimeError: Task error: File reconstruction error: CAS Client Error: Request 
+middleware error: error sending request for url 
+(https://us.aws.cdn.hf.co/xorbs/default/01aa335a12cadfee132f43199fd234b0678cbaab
+eaeca5bb5727e3b8cb310362?repo_id=6a8c7db148f47777cb08c465&X-Xet-Session-Id=01a07
+4ab-6370-7523-a323-a592acb81bcb&user_id=6656bfd8969c94127581793c&Expires=1788667
+385&Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cHM6Ly91cy5hd3MuY2RuLmhmLmNvL
+3hvcmJzL2RlZmF1bHQvMDFhYTMzNWExMmNhZGZlZTEzMmY0MzE5OWZkMjM0YjA2NzhjYmFhYmVhZWNhN
+WJiNTcyN2UzYjhjYjMxMDM2MlxcP3JlcG9faWQ9NmE4YzdkYjE0OGY0Nzc3N2NiMDhjNDY1JlgtWGV0L
+VNlc3Npb24tSWQ9MDFhMDc0YWItNjM3MC03NTIzLWEzMjMtYTU5MmFjYjgxYmNiJnVzZXJfaWQ9NjY1N
+mJmZDg5NjljOTQxMjc1ODE3OTNjIiwiQ29uZGl0aW9uIjp7IkRhdGVMZXNzVGhhbiI6eyJFcG9jaFRpb
+WUiOjE3ODg2NjczODV9LCJCeXRlUmFuZ2UiOnsiRXhwZWN0ZWRIZWFkZXIiOiJieXRlcz03OTcxODIyL
+TY3MDg4NDM3In19fV19&Signature=MEUCIQCgbAfR1-aaDX4RzENiwri99sQyXjqqwz6g1sYSbX2rIQ
+IgTXNGfBAUO0HElchs4GTmvrMrrOZpCG4tNGqhiM2nIPU_&Key-Pair-Id=01KXEF4KZ1B6FV465MAWR
+4M21F)

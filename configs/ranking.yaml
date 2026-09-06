@@ -1,0 +1,48 @@
+# Ranking configuration - all weights documented, configurable and reproducible.
+# Final Score (baseline) = sum(w_i * normalized_feature_i); weights sum to 1.0.
+
+baseline:
+  weights:
+    rarity: 0.20
+    pathogenicity: 0.20
+    phenotype_similarity: 0.25
+    clinical_evidence: 0.10
+    gene_disease: 0.10
+    inheritance: 0.05
+    mosaicism: 0.10
+
+  # Neutral value used when a feature is unavailable (missing data policy).
+  # Absence is recorded per-variant; it is never silently replaced by a guess.
+  neutral_values:
+    rarity: 0.50
+    pathogenicity: 0.30
+    phenotype_similarity: 0.00
+    clinical_evidence: 0.00
+    gene_disease: 0.00
+    inheritance: 0.00
+    mosaicism: 0.00
+
+# Deterministic tie-breaking for identical scores.
+tie_breakers: [chrom, pos, ref, alt]
+
+top_n: 100
+
+# Candidate funnel sizes.
+gene_panel:
+  size: 1500          # number of phenotype-matched genes kept
+  min_similarity: 0.05
+
+# Post-annotation funnel: drop common variants (unless ClinVar pathogenic/LP).
+funnel:
+  rarity_max_af: 0.02
+  keep_pathogenic_above_af: true
+
+submission:
+  max_rows: 10
+  team_name: rareai
+  model_name: baseline-v1
+
+# Future ML ensemble (Phase 6) - documented placeholder, not yet active.
+ensemble:
+  active: false
+  weights: { ml: 0.5, phenotype: 0.2, clinical: 0.15, functional: 0.1, mosaicism: 0.05 }

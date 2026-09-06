@@ -1,0 +1,26 @@
+# Secrets
+.env
+*.token
+
+# Private genomic / clinical data (must never be committed)
+data/
+!data/.gitkeep
+results/
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+dist/
+build/
+.venv/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# Editors / OS
+.vscode/
+.idea/
+.DS_Store

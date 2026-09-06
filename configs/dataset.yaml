@@ -1,0 +1,68 @@
+# RareAI dataset configuration.
+# No secrets here - secrets live in .env (see .env.example).
+
+repo_id: SageBio/mva-hackathon-2026-data
+
+# Proband identifier required in the submission CSV ("provided in the dataset").
+# The VCF sample column is the identifier shipped with the dataset:
+proband_id: WGS_EX2312012
+
+# Track definitions: which dataset files each track requires.
+tracks:
+  track1:
+    files:
+      - WGS_EX2312012_HGWCNDSX7.vcf.gz
+      - WGS_EX2312012_HGWCNDSX7.vcf.gz.tbi
+      - Challenge_Clinical_Phenotype_1.docx
+      - README.md
+  track2:
+    files:
+      - WGS_EX2312012_HGWCNDSX7.vcf.gz
+      - WGS_EX2312012_HGWCNDSX7.vcf.gz.tbi
+      - Challenge_Clinical_Phenotype_1.docx
+      - README.md
+  # FASTQs (~84.7 GB) are only needed for re-calling (mosaicism-aware analysis).
+  # They are never downloaded unless explicitly requested.
+  optional:
+    fastq_glob: "*.fastq.gz"
+
+paths:
+  raw: data/raw
+  staging: data/staging
+  normalized: data/normalized
+  annotations: data/annotations
+  phenotypes: data/phenotypes
+  features: data/features
+  results: results
+
+qc:
+  require_pass: true          # only records that passed GATK VariantFiltration
+  min_dp: 10                  # minimum read depth
+  min_gq: 20                  # minimum genotype quality
+  min_alt_ad: 3               # minimum alternate-supporting reads
+  het_ab_range: [0.10, 0.90]  # allelic-balance sanity window for non-mosaic het calls
+
+# External annotation resources (pinned URLs; sha256 recorded at download time).
+resources:
+  hp_obo:
+    url: https://github.com/obophenotype/human-phenotype-ontology/releases/latest/download/hp.obo
+    description: HPO ontology (hp.obo)
+  phenotype_to_genes:
+    url: https://github.com/obophenotype/human-phenotype-ontology/releases/latest/download/phenotype_to_genes.txt
+    description: HPO phenotype-to-gene annotations
+  clinvar_vcf:
+    url: https://ftp.ncbi.nlm.nih.gov/pub/clinvar/vcf_GRCh38/clinvar.vcf.gz
+    description: ClinVar VCF (GRCh38)
+  ensembl_gtf:
+    url: https://ftp.ensembl.org/pub/release-116/gtf/homo_sapiens/Homo_sapiens.GRCh38.116.gtf.gz
+    description: Ensembl gene annotation (GRCh38, release 116)
+
+# Resilient download settings (large files resume automatically between attempts).
+download:
+  retries: 12
+  backoff_s: 20
+  # HF_HUB_DISABLE_XET=1 (default in rareai.config) forces the resumable CDN
+  # HTTP path instead of the Xet/CAS client - more robust on flaky links.
+
+# Reference genome build used by the dataset (verified from VCF header contigs).
+genome_build: GRCh38
